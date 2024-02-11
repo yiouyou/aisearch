@@ -29,7 +29,7 @@ def get_context_search_bing(query: str):
     contexts = search_with_bing(query)
     # print(contexts)
     context = "\n\n".join(
-        [f"[{i+1}] {c['snippet']}" for i, c in enumerate(contexts)]
+        [f"[[{i+1}]] {c['snippet']}" for i, c in enumerate(contexts)]
     )
     # print(context)
     sources = []

@@ -2,7 +2,11 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from langserve import add_routes
 
-app = FastAPI()
+app = FastAPI(
+    title="Ai Search",
+    version="1.0",
+    description="API接口",
+)
 
 
 @app.get("/")
@@ -11,7 +15,11 @@ async def redirect_root_to_docs():
 
 
 from ai_search_openai import chain as ai_search_openai_chain
-add_routes(app, ai_search_openai_chain, path="/ai-search-openai")
+add_routes(
+    app,
+    ai_search_openai_chain,
+    path="/ai-search-openai"
+)
 
 
 if __name__ == "__main__":
