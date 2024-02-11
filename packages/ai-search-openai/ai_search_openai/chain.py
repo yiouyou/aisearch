@@ -49,15 +49,17 @@ def ai_search(_dict):
     ### rag_query
     _rq = PromptTemplate.from_template(_prompt_rag_query_CN)
     prompt_rq = _rq.format(context=context, question=question)
-    print(prompt_rq)
+    # print(prompt_rq)
     out_rq = llm.invoke(prompt_rq).content
-    print(out_rq)
+    # print(out_rq)
     # logger.info(prompt_rq)
     # logger.info(out_rq)
     # ### more_questions
     _mq = PromptTemplate.from_template(_prompt_more_questions_CN)
     prompt_mq = _mq.format(context=context, question=question)
+    # print(prompt_mq)
     out_mq = llm.invoke(prompt_mq).content
+    # print(out_mq)
     # logger.info(prompt_mq)
     # logger.info(out_mq)
     ### out
