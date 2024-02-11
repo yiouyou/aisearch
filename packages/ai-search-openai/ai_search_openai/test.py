@@ -1,3 +1,15 @@
+import requests
+response = requests.post(
+    "http://127.0.0.1:8000/ai-search-openai/invoke",
+    json={'input': {'"question': '为什么月球绕地球公转和自转的周期相等？'}}
+)
+print(response.json())
+
+# from langserve import RemoteRunnable
+# runnable = RemoteRunnable("http://127.0.0.1:8000/ai-search-openai")
+# out = runnable.invoke({"question": "为什么月球绕地球公转和自转的周期相等？"})
+exit()
+
 from util import search_with_bing
 from prompt import (
   _prompt_rag_query_CN,
@@ -45,13 +57,11 @@ prompt_rq = _rq.format(context=context, question=question)
 print(prompt_rq)
 out_rq = llm.invoke(prompt_rq).content
 print(out_rq)
-
 # _mq = PromptTemplate.from_template(_prompt_more_questions_CN)
 # prompt_mq = _mq.format(context=context, question=question)
 # print(prompt_mq)
 # out_mq = llm.invoke(prompt_mq).content
 # print(out_mq)
-
 exit()
 
 class outparser(StrOutputParser):
