@@ -1,14 +1,14 @@
-import requests
-response = requests.post(
-    "http://localhost:8000/ai-search-openai/invoke",
-    json={'input': {'question': '为什么月球绕地球公转和自转的周期相等？'}}
-)
-print(response.json())
+# import requests
+# response = requests.post(
+#     "http://localhost:8000/ai-search-openai/invoke",
+#     json={'input': {'question': '为什么月球绕地球公转和自转的周期相等？'}}
+# )
+# print(response.json())
 
-# from langserve import RemoteRunnable
-# runnable = RemoteRunnable("http://localhost:8000/ai-search-openai")
-# out = runnable.invoke({"question": "为什么月球绕地球公转和自转的周期相等？"})
-# print(out)
+from langserve import RemoteRunnable
+runnable = RemoteRunnable("http://localhost:8000/ai-search-openai")
+out = runnable.invoke({"question": "为什么月球绕地球公转和自转的周期相等？"})
+print(out)
 exit()
 
 from util import search_with_bing
