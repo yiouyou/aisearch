@@ -2,18 +2,19 @@
 name = "aisearch"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["yiouyou <zhuosong@gmail.com>"]
 readme = "README.md"
 packages = [
     { include = "app" },
 ]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 uvicorn = "^0.23.2"
 langserve = {extras = ["server"], version = ">=0.0.30"}
-pydantic = "<2"
-rag-chroma = {path = "packages\\rag-chroma", develop = true}
+pydantic = "2.6.1"
+langchain-openai = "^0.0.5"
+langchain-mistralai = "^0.0.4"
 
 
 [tool.poetry.group.dev.dependencies]

@@ -10,6 +10,7 @@ load_dotenv()
 from langchain.prompts import PromptTemplate
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
+from langchain_mistralai.chat_models import ChatMistralAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import (
     RunnablePassthrough,
@@ -34,8 +35,24 @@ question = '为什么月球绕地球公转和自转的周期相等？'
 context = get_context_search_bing(question)
 # print(context)
 
-_rag_query = PromptTemplate.from_template(_prompt_rag_query_CN)
-llm_openai = ChatOpenAI()
+
+# llm = ChatOpenAI(model="gpt-3.5-turbo-0125")
+llm = ChatMistralAI(model="mistral-medium")
+
+
+_rq = PromptTemplate.from_template(_prompt_rag_query_CN)
+prompt_rq = _rq.format(context=context, question=question)
+print(prompt_rq)
+out_rq = llm.invoke(prompt_rq).content
+print(out_rq)
+
+# _mq = PromptTemplate.from_template(_prompt_more_questions_CN)
+# prompt_mq = _mq.format(context=context, question=question)
+# print(prompt_mq)
+# out_mq = llm.invoke(prompt_mq).content
+# print(out_mq)
+
+exit()
 
 class outparser(StrOutputParser):
     def parse(self, output):
@@ -44,8 +61,8 @@ class outparser(StrOutputParser):
         return output
 
 chain = (
-    _rag_query
-    | llm_openai
+    _rq
+    | llm
     | outparser
 )
 
